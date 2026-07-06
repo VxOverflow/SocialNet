@@ -23,7 +23,7 @@ function renderPersonRow(person) {
     <img class="avatar" src="${photo}" alt="">
     <div class="info"><b><a href="profil.html?id=${person.id}">${escapeHtml(person.prenom)} ${escapeHtml(person.nom)}</a></b><span>${escapeHtml(person.bio || 'Étudiant ESGIS')}</span></div>
     ${actionHtml}
-  </div>`
+  </div>`;
 }
 
 async function searchUsers(query = '') {
@@ -39,7 +39,7 @@ async function searchUsers(query = '') {
 async function sendFriendRequest(receiverId, btn) {
   const res = await apiFetch('/friends/send.php', { method: 'POST', body: { receiver_id: receiverId } });
   if (res.success) {
-    btn.outerHTML = '<span class="mini-btn pending">Envoyée</span>'
+    btn.outerHTML = '<span class="mini-btn pending">Envoyée</span>';
   } else {
     alert(res.message);
   }
