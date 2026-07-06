@@ -31,4 +31,4 @@ $stmt = $pdo->prepare(
 $stmt->execute([$user['id']]);
 $demandes = $stmt->fetchAll();
 
-json_response(['success' => true, 'amis' => $amis, 'demandes_recues' => $demandes]);
+json_response(['success' => true, 'amis' => $amis, 'demandes_reçues' => $demandes]);

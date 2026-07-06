@@ -19,7 +19,7 @@ if (!$ancien || !$nouveau || !$confirmation) {
     json_response(['success' => false, 'message' => 'Tous les champs sont requis'], 400);
 }
 if ($nouveau !== $confirmation) {
-    json_response(['success' => false, 'message' => 'Les mots de passe ne correspondent pas'], 400);
+    json_response(['success' => false, 'message' => 'Les mot de passe ne correspondent pas'], 400);
 }
 if (strlen($nouveau) < 6) {
     json_response(['success' => false, 'message' => 'Le nouveau mot de passe doit contenir au moins 6 caractères'], 400);

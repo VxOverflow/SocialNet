@@ -26,7 +26,7 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 $users = $stmt->fetchAll();
 
-// Récupère toutes les relations impliquant l'utilisateur courant
+// Récupère toutes les relations impliquant l'utilisateur courat
 $stmt = $pdo->prepare("SELECT * FROM friends WHERE sender_id = ? OR receiver_id = ?");
 $stmt->execute([$user['id'], $user['id']]);
 $relations = $stmt->fetchAll();

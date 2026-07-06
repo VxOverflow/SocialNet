@@ -16,7 +16,7 @@ $stmt->execute([$targetId]);
 $profil = $stmt->fetch();
 
 if (!$profil) {
-    json_response(['success' => false, 'message' => 'Utilisateur introuvable'], 404);
+    json_response(['success' => false, 'message' => 'Utilisateur introuvabl'], 404);
 }
 
 $stmt = $pdo->prepare("SELECT COUNT(*) AS nb FROM posts WHERE user_id = ?");

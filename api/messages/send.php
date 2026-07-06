@@ -18,7 +18,7 @@ if (!$receiverId) {
     json_response(['success' => false, 'message' => 'receiver_id requis'], 400);
 }
 if (!$message && !$imagePath) {
-    json_response(['success' => false, 'message' => 'Le message ne peut pas être vide'], 400);
+    json_response(['success' => false, 'message' => 'Le message ne peut pas être vid'], 400);
 }
 
 $stmt = $pdo->prepare(
