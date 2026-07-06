@@ -24,4 +24,4 @@ if ($photoPath) {
     $stmt->execute([$nom, $prenom, $bio, $user['id']]);
 }
 
-json_response(['success' => true, 'message' => 'Profil mis a jour', 'photo' => $photoPath]);
+json_response(['success' => true, 'message' => 'Profil mis à jour', 'photo' => $photoPath]);
