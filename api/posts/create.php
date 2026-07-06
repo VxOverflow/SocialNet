@@ -11,7 +11,7 @@ require_once __DIR__ . '/../../includes/functions.php';
 require_once __DIR__ . '/../../includes/auth_check.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    json_response(['success' => false, 'message' => 'Méthode non autorisé'], 405);
+    json_response(['success' => false, 'message' => 'Méthode non autorisée'], 405);
 }
 
 $user = require_auth();
