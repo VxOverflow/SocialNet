@@ -34,4 +34,4 @@ $newStatus = $action === 'accept' ? 'accepted' : 'refused';
 $stmt = $pdo->prepare("UPDATE friends SET status = ? WHERE id = ?");
 $stmt->execute([$newStatus, $requestId]);
 
-json_response(['success' => true, 'message' => $action === 'accept' ? 'Invitation acceptée' : 'Invitation refusée']);
+json_response(['success' => true, 'message' => $action === 'accept' ? 'Invitation accepté' : 'Invitation refusée']);

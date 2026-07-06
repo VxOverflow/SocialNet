@@ -17,7 +17,7 @@ if (!$receiverId || $receiverId == $user['id']) {
 }
 
 $stmt = $pdo->prepare(
-    "SELECT id FROM friends WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)"
+    "SELECT id FROM friends WHERE (sender_id = ? AND receiver_id = ?)"
 );
 $stmt->execute([$user['id'], $receiverId, $receiverId, $user['id']]);
 if ($stmt->fetch()) {
