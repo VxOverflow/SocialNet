@@ -69,7 +69,7 @@ async function submitPasswordChange(e) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Charger le profil si nous sommes sur profil.htm
+  // Charger le profil si nous sommes sur profil.html
   if (document.getElementById('profile-name')) {
     loadProfile();
     document.getElementById('form-edit-profile')?.addEventListener('submit', submitProfileEdit);
