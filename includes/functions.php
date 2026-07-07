@@ -17,11 +17,11 @@ function sanitize($str) {
     return htmlspecialchars(trim($str ?? ''), ENT_QUOTES, 'UTF-8');
 }
 
-/** Lit le corps JSON d'une requête POST/PUT et le retourne en tableau */
+/** Lit le corps JSON d'une requête POST et le retourne en tableau */
 function get_json_body() {
     $raw = file_get_contents('php://input');
     $data = json_decode($raw, true);
-    return is_array($data) ? $data : [];
+    return is_array($data) ? $data : [];// renvoie un tableau vide si la data n'est pas un tableau 
 }
 
 /**

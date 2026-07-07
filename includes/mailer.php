@@ -1,17 +1,4 @@
 <?php
-/**
- * includes/mailer.php
- * Génère et envoie des emails au format HTML.
- *
- * IMPORTANT (XAMPP en local) :
- * La fonction mail() de PHP nécessite un serveur SMTP configuré (Mercury Mail
- * dans XAMPP, ou un vrai service comme Gmail SMTP). En local, sans configuration,
- * l'envoi réel échoue souvent. Pour que le module reste démontrable même sans
- * SMTP configuré, chaque email envoyé est aussi sauvegardé en HTML dans le
- * dossier /emails_log — ouvre simplement le fichier .html généré dans un
- * navigateur pour voir l'email tel qu'il serait reçu.
- */
-
 /** Construit un template HTML d'email avec l'identité visuelle du projet */
 function build_email_template($titre, $contenuHtml, $boutonTexte = null, $boutonLien = null) {
     $bouton = '';
@@ -27,6 +14,7 @@ function build_email_template($titre, $contenuHtml, $boutonTexte = null, $bouton
           </td>
         </tr>';
     }
+//chaque email envoyé est aussi sauvegardé en HTML dans le  dossier /emails_log
 
     return '
     <table width="100%" cellpadding="0" cellspacing="0" style="background:#EEF1F6;padding:40px 0;font-family:Arial,sans-serif;">
@@ -47,7 +35,7 @@ function build_email_template($titre, $contenuHtml, $boutonTexte = null, $bouton
             ' . $bouton . '
             <tr>
               <td style="padding:16px 28px;background:#F7F8FB;color:#8A8FA3;font-size:11px;">
-                SocialNet ESGIS — projet étudiant, réseau social pédagogique.
+                SocialNet ESGIS 
               </td>
             </tr>
           </table>
@@ -56,18 +44,18 @@ function build_email_template($titre, $contenuHtml, $boutonTexte = null, $bouton
     </table>';
 }
 
-/** Envoie un email HTML, avec sauvegarde locale systématique (voir note ci-dessus) */
+/** Envoie un email HTML, avec sauvegarde locale systématique  */
 function send_email($to, $subject, $htmlBody) {
     $headers = "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-    $headers .= "From: SocialNet ESGIS <no-reply@socialnet.local>\r\n";
+    $headers .= "From: SocialNet  <no-reply@socialnet.local>\r\n";
 
     $sent = @mail($to, $subject, $htmlBody, $headers);
 
     // Sauvegarde locale pour démonstration / défense orale
-    $logDir = __DIR__ . '/../emails_log';
+    $logDir = __DIR__ . '/../emails_log'; //chemin relatif du dossier email_log
     if (!is_dir($logDir)) {
-        mkdir($logDir, 0777, true);
+        mkdir($logDir, 0777, true);// en cas d'absence du dossier on cree le dossier 
     }
     $filename = $logDir . '/' . date('Y-m-d_His') . '_' . preg_replace('/[^a-zA-Z0-9]/', '_', $to) . '.html';
     file_put_contents($filename, $htmlBody);

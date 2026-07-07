@@ -1,10 +1,4 @@
-/**
- * assets/js/common.js
- * Chargé par toutes les pages vues/clients/*.html et vues/back-office/*.html
- * - apiFetch() : wrapper fetch qui ajoute automatiquement le token (sessionStorage)
- * - requireAuth() / requireAdminAuth() : protège les pages si non connecté
- * - mountNavbar() : injecte la barre de navigation cliente
- */
+
 
 // Chemin de l'API relatif à la page courante (vues/clients/*.html -> ../../api)
 const API_BASE = '../../api';
@@ -64,7 +58,8 @@ async function apiFetch(path, options = {}) {
   return data;
 }
 
-/** À placer en haut de chaque page client protégée */
+/** À placer en haut de chaque page client protégée
+verifie si le token est valide pour eviter l'acces aux pages sans athentification*/
 function requireAuth() {
   const user = getCurrentUser();
   if (!user) {
@@ -74,7 +69,8 @@ function requireAuth() {
   return user;
 }
 
-/** À placer en haut de chaque page back-office protégée */
+/** À placer en haut de chaque page back-office protégée
+meme fonction que la precedente*/
 function requireAdminAuth() {
   const user = getCurrentUser();
   if (!user || !['admin', 'moderateur'].includes(user.role)) {
@@ -106,13 +102,17 @@ function mountNavbar(activePage) {
         </div>
       </div>
     </header>`;
-
+//${activePage === 'profil' ? 'active' : ''} contidition qui marque la page active 
+  // fonction de deconnexion 
+  //elle supprime la variable user cree lors de la connexion et redirige le user vers la page de connxion 
   document.getElementById('btn-logout').addEventListener('click', async () => {
     await apiFetch('/auth/logout.php', { method: 'POST' });
     clearCurrentUser();
     window.location.href = 'connexion.html';
   });
-
+// recherche d'un amis
+  // lors de la l'appui sur la touche entree, on nettoie ce que le user a ecrit pour eviter les injection sql vu 
+  // qu'on s'apprete a lancer une requete en base avec cette info
   const searchInput = document.getElementById('nav-search-input');
   if (searchInput) {
     searchInput.addEventListener('keydown', (e) => {
